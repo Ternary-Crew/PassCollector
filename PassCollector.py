@@ -1,6 +1,14 @@
 import sqlite3, hashlib
 from tkinter import *
+import tkinter.messagebox
 import customtkinter
+from PIL import Image, ImageTk # Pip install Pillow
+import os
+
+customtkinter.set_appearance_mode("Dark")  # Modes: "System" (standard), "Dark", "Light"
+customtkinter.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
+
+PATH = os.path.dirname(os.path.realpath(__file__))
 
 #Database Code
 with sqlite3.connect("password_vault.db") as db:
@@ -13,7 +21,8 @@ password TEXT NOT NULL);
 """) 
 
 #Initiate Window
-window = Tk()
+#window = Tk()
+window = customtkinter.CTk()
 
 window.title("PassCollector")
 
@@ -24,7 +33,7 @@ def hashPassword(input):
     return hash
 
 def firstScreen():
-    window.geometry("250x100")
+    window.geometry("700x350")
 
     lbl = Label(window, text="Create Master Password")
     lbl.config(anchor=CENTER)
@@ -37,7 +46,7 @@ def firstScreen():
     lbl1 = Label(window, text="Re-enter Password")
     lbl1.pack()
 
-    txt1 = Entry(window, width=20)
+    txt1 = Entry(window, width=20, show="*")
     txt1.pack()
     txt1.focus()
 
@@ -61,7 +70,7 @@ def firstScreen():
     btn.pack(pady=10)
 
 def loginScreen():                                        
-    window.geometry("250x100")
+    window.geometry("700x350")
 
     lbl = Label(window, text="Enter Master Password")
     lbl.config(anchor=CENTER)
