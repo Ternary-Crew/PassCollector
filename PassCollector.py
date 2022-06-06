@@ -20,11 +20,26 @@ id INTEGER PRIMARY KEY,
 password TEXT NOT NULL);
 """) 
 
-#Initiate Window
-#window = Tk()
-window = customtkinter.CTk()
+# Constants
+APP_NAME = "PassCollector"
+WIDTH = 900
+HEIGHT = 600
 
-window.title("PassCollector")
+#Initiate Window
+window = customtkinter.CTk()
+window.title(APP_NAME)
+window.geometry(f"{WIDTH}x{HEIGHT}")
+window.minsize(WIDTH, HEIGHT)
+window.maxsize(WIDTH * 3, HEIGHT * 3)
+window.resizable(True, True)
+
+image = Image.open(PATH + "/Images/bg_gradient.jpg").resize((WIDTH*3, HEIGHT*3))    
+bg_image = ImageTk.PhotoImage(image)
+
+# image_label = tkinter.Label(master=window, image=bg_image)
+# image_label.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+
+#window.protocol("WM_DELETE_WINDOW", on_closing)
 
 def hashPassword(input):
     hash = hashlib.md5(input)
@@ -33,25 +48,31 @@ def hashPassword(input):
     return hash
 
 def firstScreen():
-    window.geometry("700x350")
+    #window.geometry(f"{WIDTH}x{HEIGHT}")
+    # Load Image With PIL And Convert To PhotoImage
+    
+    # image = Image.open(PATH + "/Images/bg_gradient.jpg").resize((WIDTH*3, HEIGHT*3))    
+    # bg_image = ImageTk.PhotoImage(image)
 
-    lbl = Label(window, text="Create Master Password")
-    lbl.config(anchor=CENTER)
-    lbl.pack()
+    image_label = tkinter.Label(master=window, image=bg_image)
+    image_label.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
-    txt = Entry(window, width=20, show="*")
-    txt.pack()
-    txt.focus()
+    frame = customtkinter.CTkFrame(master=window,
+                                   width=300,
+                                   height=HEIGHT,
+                                   corner_radius=0)
+    frame.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
-    lbl1 = Label(window, text="Re-enter Password")
-    lbl1.pack()
+    lbl = customtkinter.CTkLabel(master=frame, width=200, height=60,
+                                              fg_color=("gray70", "gray25"), text="Please Create A Master Password")
+    lbl.place(relx=0.5, rely=0.3, anchor=tkinter.CENTER)
 
-    txt1 = Entry(window, width=20, show="*")
-    txt1.pack()
-    txt1.focus()
 
-    lbl2 = Label(window)
-    lbl2.pack()
+    txt = customtkinter.CTkEntry(master=frame, corner_radius=6, width=200, show="*", placeholder_text="Enter Password")
+    txt.place(relx=0.5, rely=0.52, anchor=tkinter.CENTER)
+
+    txt1 = customtkinter.CTkEntry(master=frame, corner_radius=6, width=200, show="*", placeholder_text="Re-Enter Password")
+    txt1.place(relx=0.5, rely=0.6, anchor=tkinter.CENTER)
 
     def savePassword():
         if txt.get() == txt1.get():
@@ -64,10 +85,11 @@ def firstScreen():
 
             passwordVault()
         else:
-            lbl2.config(text="Password Do Not Match")
+            lbl.config(text="Password Do Not Match")
 
-    btn = Button(window, text="Save", command=savePassword)
-    btn.pack(pady=10)
+    btn = customtkinter.CTkButton(master=frame, text="Create Master Password",
+                                                corner_radius=6, command=savePassword, width=200)
+    btn.place(relx=0.5, rely=0.7, anchor=tkinter.CENTER)
 
 def loginScreen():                                        
     window.geometry("700x350")
