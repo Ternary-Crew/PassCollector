@@ -3,7 +3,7 @@
 PassCollector is our ICS 427 Project in which the purpose of this application is to allow the user to store passwords from multiple platforms.
 
 ## What is completed so far?
-* Started creating GUI for the application
+* GUI for the application
 * Logging in to the application (with a master password)
 
 ### What is pending?
