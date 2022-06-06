@@ -36,6 +36,9 @@ window.resizable(True, True)
 image = Image.open(PATH + "/Images/bg_gradient.jpg").resize((WIDTH*3, HEIGHT*3))    
 bg_image = ImageTk.PhotoImage(image)
 
+image = Image.open(PATH + "/Images/title.png")
+title_image = ImageTk.PhotoImage(image)
+
 # image_label = tkinter.Label(master=window, image=bg_image)
 # image_label.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
@@ -57,13 +60,18 @@ def firstScreen():
     image_label = tkinter.Label(master=window, image=bg_image)
     image_label.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
+
+
     frame = customtkinter.CTkFrame(master=window,
                                    width=300,
                                    height=HEIGHT,
-                                   corner_radius=0)
+                                   corner_radius=10)
     frame.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
-    lbl = customtkinter.CTkLabel(master=frame, width=200, height=60,
+    image_label_title = tkinter.Label(master=frame, image=title_image)
+    image_label_title.place(relx=0.5, rely=0.15, anchor=tkinter.CENTER)
+
+    lbl = customtkinter.CTkLabel(master=frame, width=200, height=60, 
                                               fg_color=("gray70", "gray25"), text="Please Create A Master Password")
     lbl.place(relx=0.5, rely=0.3, anchor=tkinter.CENTER)
 
