@@ -4,15 +4,22 @@ PassCollector is our ICS 427 Project in which the purpose of this application is
 
 ## What is completed so far?
 * Started creating GUI for the application
+* Logging in to the application (with a master password)
 
 ### What is pending?
-* Logging in to the application (with a master password)
 * Being able to store passwords within the application
+* Data encryption
+* Database 
 
 ### Assigned Duties
 Christian
 * Create GUI
+* Application login
 
 Kevin
+* Basic functions of the application
+* Storing passwords/entries into the application
 
 Karl
+* Data encryption
+* Database
