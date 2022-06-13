@@ -1,4 +1,3 @@
-from os import remove
 import sqlite3, hashlib
 from tkinter import *
 from tkinter import simpledialog
@@ -14,7 +13,7 @@ from cryptography.fernet import Fernet
 # import customtkinter
 
 backend = default_backend()
-salt = b'2345'
+salt = b'2444'
 
 kdf = PBKDF2HMAC(
     algorithm=hashes.SHA256(),
@@ -62,6 +61,7 @@ def popUp(text):
 
 # Initiate Window
 window = Tk()
+window.update()
 
 window.title("PassCollector")
 
@@ -77,7 +77,7 @@ def firstScreen():
     for widget in window.winfo_children():
         widget.destroy()
 
-    window.geometry("250x100")
+    window.geometry("250x125")
 
     lbl = Label(window, text="Create Master Password")
     lbl.config(anchor=CENTER)
@@ -88,14 +88,11 @@ def firstScreen():
     txt.focus()
 
     lbl1 = Label(window, text="Re-enter Password")
+    lbl1.config(anchor=CENTER)
     lbl1.pack()
 
-    txt1 = Entry(window, width=20)
+    txt1 = Entry(window, width=20, show="*")
     txt1.pack()
-    txt1.focus()
-
-    lbl2 = Label(window)
-    lbl2.pack()
 
     def savePassword():
         if txt.get() == txt1.get():
@@ -112,48 +109,48 @@ def firstScreen():
 
             insert_password = """INSERT INTO masterpassword(password, recoveryKey)
             VALUES(?, ?) """
-            cursor.execute(insert_password, [(hashedPassword), (recoveryKey)])
+            cursor.execute(insert_password, ((hashedPassword), (recoveryKey)))
             db.commit()
 
             recoveryPasswordScreen(key)
         else:
-            lbl2.config(text="Password Do Not Match")
+            lbl.config(text="Password Do Not Match")
 
     btn = Button(window, text="Save", command=savePassword)
-    btn.pack(pady=10)
+    btn.pack(pady=5)
 
 
 def recoveryPasswordScreen(key):
     for widget in window.winfo_children():
         widget.destroy()
 
-    window.geometry("250x100")
+    window.geometry("250x125")
 
     lbl = Label(window, text="Save this key to recover account")
     lbl.config(anchor=CENTER)
     lbl.pack()
 
     lbl1 = Label(window, text=key)
-    lbl.config(anchor=CENTER)
+    lbl1.config(anchor=CENTER)
     lbl1.pack()
 
     def copyRecoveryKey():
         pyperclip.copy(lbl1.cget("text"))
 
     btn = Button(window, text="Copy Key", command=copyRecoveryKey)
-    btn.pack(pady=10)
+    btn.pack(pady=5)
 
     def done():
         passwordVault()
 
     btn = Button(window, text="Done", command=done)
-    btn.pack(pady=10)
+    btn.pack(pady=5)
 
 def resetPasswordScreen():
     for widget in window.winfo_children():
         widget.destroy()
 
-    window.geometry("250x100")
+    window.geometry("250x125")
 
     lbl = Label(window, text="Enter Recovery Key")
     lbl.config(anchor=CENTER)
@@ -182,10 +179,13 @@ def resetPasswordScreen():
             lbl1.config(text='Wrong Key')
 
     btn = Button(window, text="Check Key", command=checkRecoveryKey)
-    btn.pack(pady=10)
+    btn.pack(pady=5)
 
 def loginScreen():
-    window.geometry("250x100")
+    for widget in window.winfo_children():	
+        widget.destroy()
+
+    window.geometry("250x125")
 
     lbl = Label(window, text="Enter Master Password")
     lbl.config(anchor=CENTER)
@@ -196,7 +196,8 @@ def loginScreen():
     txt.focus()
 
     lbl1 = Label(window)
-    lbl1.pack()
+    lbl1.config(anchor=CENTER)	
+    lbl1.pack(side=TOP)
 
     def getMasterPassword():
         checkHashedPassword = hashPassword(txt.get().encode('utf-8'))
@@ -214,14 +215,14 @@ def loginScreen():
             txt.delete(0, 'end')
             lbl1.config(text="Wrong Password")
 
-    btn = Button(window, text="Submit", command=checkPassword)
-    btn.pack(pady=10)
-
     def resetPassword():
         resetPasswordScreen()
 
+    btn = Button(window, text="Submit", command=checkPassword)
+    btn.pack(pady=5)
+
     btn = Button(window, text="Reset Password", command=resetPassword)
-    btn.pack(pady=10)
+    btn.pack(pady=5)
 
 
 def passwordVault():
@@ -246,12 +247,13 @@ def passwordVault():
         passwordVault()
 
     def removeEntry(input):
-        cursor.execute("DELETE FROM VAULT WHERE id = ?", (input,))
+        cursor.execute("DELETE FROM vault WHERE id = ?", (input,))
         db.commit()
 
         passwordVault()
 
-    window.geometry("700x350")
+    window.geometry("750x550")
+    window.resizable(height=None, width=None)
 
     lbl = Label(window, text="Password Vault")
     lbl.grid(column=1)
@@ -277,17 +279,17 @@ def passwordVault():
                 break
 
             # website label
-            lbl = Label(window, text=(decrypt(array[i][1], encryptionKey)), font=("Helvetica", 12))
-            lbl.grid(column=0, row=i + 3)
+            lbl1 = Label(window, text=(decrypt(array[i][1], encryptionKey)), font=("Helvetica", 12))
+            lbl1.grid(column=0, row=(i + 3))
             # username label
-            lbl = Label(window, text=(decrypt(array[i][2], encryptionKey)), font=("Helvetica", 12))
-            lbl.grid(column=1, row=i + 3)
+            lbl2 = Label(window, text=(decrypt(array[i][2], encryptionKey)), font=("Helvetica", 12))
+            lbl2.grid(column=1, row=(i + 3))
             # password label
-            lbl = Label(window, text=(decrypt(array[i][3], encryptionKey)), font=("Helvetica", 12))
-            lbl.grid(column=2, row=i + 3)
+            lbl3 = Label(window, text=(decrypt(array[i][3], encryptionKey)), font=("Helvetica", 12))
+            lbl3.grid(column=2, row=(i + 3))
 
             btn = Button(window, text="Delete", command=partial(removeEntry, array[i][0]))
-            btn.grid(column=3, row=i + 3, pady=10)
+            btn.grid(column=3, row=(i + 3), pady=10)
 
             i = i + 1
 
