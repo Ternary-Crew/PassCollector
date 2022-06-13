@@ -23,3 +23,14 @@ Kevin
 Karl
 * Data encryption
 * Database
+
+
+## Week 3 : 6/6/22 - 6/13/22
+
+### Progress
+* Users can create a master password to the application
+* Users can store usernames and passwords of multiple platforms insdie the app.
+* Encryption to the data stored in the app is implemented.
+
+### Pending
+* Edit the GUI
