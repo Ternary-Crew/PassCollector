@@ -39,6 +39,10 @@ Karl
 ### Roles and Responsibilities
 Christian
 
+Completed:
+* GUI created
+* Login (master password)
+
 Current:
 * Edit GUI
 * Other features
@@ -46,6 +50,9 @@ Current:
 Next: *
 
 Kevin
+
+Completed:
+* Basic functions
 
 Current:
 * Edit GUI
@@ -55,7 +62,11 @@ Next: *
 
 Karl
 
-Current: Add other features
+Completed:
+* Encryption implemented
+
+Current: 
+* Add other features
 
 Next: *
 
