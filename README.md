@@ -34,6 +34,44 @@ Karl
 
 ### Pending
 * Edit the GUI
+* Add other features
+
+### Roles and Responsibilities
+Christian
+
+Completed:
+* GUI created
+* Login (master password)
+
+Current:
+* Edit GUI
+* Other features
+* Clean up code
+
+Next: *
+
+Kevin
+
+Completed:
+* Basic functions
+
+Current:
+* Edit GUI
+* Other features
+* Clean up code
+
+Next: *
+
+Karl
+
+Completed:
+* Encryption implemented
+
+Current: 
+* Add other features
+* Clean up code
+
+Next: *
 
 ## Links
 * [Our Online Repository](https://github.com/Ternary-Crew/PassCollector)
