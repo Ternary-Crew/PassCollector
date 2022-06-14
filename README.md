@@ -34,6 +34,24 @@ Karl
 
 ### Pending
 * Edit the GUI
+* Add other features
+
+### Roles and Responsibilities
+Christian
+Current:
+* Edit GUI
+* Other features
+Next: *
+
+Kevin
+Current:
+* Edit GUI
+* Other features
+Next: *
+
+Karl
+Current: Add other features
+Next: *
 
 ## Links
 * [Our Online Repository](https://github.com/Ternary-Crew/PassCollector)
