@@ -38,19 +38,25 @@ Karl
 
 ### Roles and Responsibilities
 Christian
+
 Current:
 * Edit GUI
 * Other features
+
 Next: *
 
 Kevin
+
 Current:
 * Edit GUI
 * Other features
+
 Next: *
 
 Karl
+
 Current: Add other features
+
 Next: *
 
 ## Links
