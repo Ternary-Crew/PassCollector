@@ -29,7 +29,7 @@ Karl
 
 ### Progress
 * Users can create a master password to the application
-* Users can store usernames and passwords of multiple platforms insdie the app.
+* Users can store usernames and passwords of multiple platforms inside the app.
 * Encryption to the data stored in the app is implemented.
 
 ### Pending
