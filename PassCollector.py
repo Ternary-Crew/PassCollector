@@ -68,10 +68,10 @@ window.update()
 window.title("PassCollector")
 
 def hashPassword(input):
-    hash = hashlib.sha256(input)
-    hash = hash.hexdigest()
+    hash1 = hashlib.sha256(input)
+    hash1 = hash1.hexdigest()
 
-    return hash
+    return hash1
 
 
 def firstScreen():
@@ -206,16 +206,16 @@ def passwordVault():
 
             # website label
             lbl1 = Label(window, text=(decrypt(array[i][1], encryptionKey)), font=("Helvetica", 12))
-            lbl1.grid(column=0, row=i + 3)
+            lbl1.grid(column=0, row=(i + 3))
             # username label
             lbl2 = Label(window, text=(decrypt(array[i][2], encryptionKey)), font=("Helvetica", 12))
-            lbl2.grid(column=1, row=i + 3)
+            lbl2.grid(column=1, row=(i + 3))
             # password label
             lbl3 = Label(window, text=(decrypt(array[i][3], encryptionKey)), font=("Helvetica", 12))
-            lbl3.grid(column=2, row=i + 3)
+            lbl3.grid(column=2, row=(i + 3))
 
             btn = Button(window, text="Delete", command=partial(removeEntry, array[i][0]))
-            btn.grid(column=3, row=i + 3, pady=10)
+            btn.grid(column=3, row=(i + 3), pady=10)
 
             i = i + 1
 
