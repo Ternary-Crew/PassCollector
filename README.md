@@ -46,6 +46,7 @@ Completed:
 Current:
 * Edit GUI
 * Other features
+* Clean up code
 
 Next: *
 
@@ -57,6 +58,7 @@ Completed:
 Current:
 * Edit GUI
 * Other features
+* Clean up code
 
 Next: *
 
@@ -67,6 +69,7 @@ Completed:
 
 Current: 
 * Add other features
+* Clean up code
 
 Next: *
 
