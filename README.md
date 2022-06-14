@@ -36,4 +36,4 @@ Karl
 * Edit the GUI
 
 ## Links
-* [Our Online Repository] (https://github.com/Ternary-Crew/PassCollector)
+* [Our Online Repository](https://github.com/Ternary-Crew/PassCollector)
