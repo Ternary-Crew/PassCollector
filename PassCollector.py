@@ -233,17 +233,17 @@ def passwordVault():
 
     window.geometry("750x550")
     window.resizable(height=None, width=None)
-    lbl = Label(window, text="Password Vault")
+    lbl = customtkinter.CTkLabel(window, text="Password Vault")
     lbl.grid(column=1)
 
-    btn = Button(window, text="+", command=addEntry)
+    btn = customtkinter.CTkButton(window, text="+", command=addEntry)
     btn.grid(column=1, pady=10)
 
-    lbl = Label(window, text="Website")
+    lbl = customtkinter.CTkLabel(window, text="Website")
     lbl.grid(row=2, column=0, padx=80)
-    lbl = Label(window, text="Username")
+    lbl = customtkinter.CTkLabel(window, text="Username")
     lbl.grid(row=2, column=1, padx=80)
-    lbl = Label(window, text="Password")
+    lbl = customtkinter.CTkLabel(window, text="Password")
     lbl.grid(row=2, column=2, padx=80)
 
     cursor.execute("SELECT * FROM vault")
@@ -266,7 +266,7 @@ def passwordVault():
             lbl3 = Label(window, text=(decrypt(array[i][3], encryptionKey)), font=("Helvetica", 12))
             lbl3.grid(column=2, row=(i + 3))
 
-            btn = Button(window, text="Delete", command=partial(removeEntry, array[i][0]))
+            btn = customtkinter.CTkButton(window, text="Delete", command=partial(removeEntry, array[i][0]))
             btn.grid(column=3, row=(i + 3), pady=10)
 
             i = i + 1
