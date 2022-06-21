@@ -62,11 +62,12 @@ password TEXT NOT NULL);
 
 # Constants
 APP_NAME = "PassCollector"
-WIDTH = 900
+WIDTH = 1200
 HEIGHT = 600
 
 # Create the Popup
 def popUp(text):
+    
     answer = simpledialog.askstring("input string", text)
 
     return answer
@@ -257,13 +258,13 @@ def passwordVault():
                 break
 
             # website label
-            lbl1 = Label(window, text=(decrypt(array[i][1], encryptionKey)), font=("Helvetica", 12))
+            lbl1 = customtkinter.CTkLabel(window, text=(decrypt(array[i][1], encryptionKey)))
             lbl1.grid(column=0, row=(i + 3))
             # username label
-            lbl2 = Label(window, text=(decrypt(array[i][2], encryptionKey)), font=("Helvetica", 12))
+            lbl2 = customtkinter.CTkLabel(window, text=(decrypt(array[i][2], encryptionKey)))
             lbl2.grid(column=1, row=(i + 3))
             # password label
-            lbl3 = Label(window, text=(decrypt(array[i][3], encryptionKey)), font=("Helvetica", 12))
+            lbl3 = customtkinter.CTkLabel(window, text=(decrypt(array[i][3], encryptionKey)))
             lbl3.grid(column=2, row=(i + 3))
 
             btn = customtkinter.CTkButton(window, text="Delete", command=partial(removeEntry, array[i][0]))
