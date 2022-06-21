@@ -1,7 +1,9 @@
 import sqlite3, hashlib
 from tkinter import *
 from tkinter import simpledialog
+import tkinter.messagebox
 from functools import partial
+from turtle import bgcolor
 import uuid
 import pyperclip
 import base64
@@ -10,8 +12,13 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.backends import default_backend
 from cryptography.fernet import Fernet
+import customtkinter
+from PIL import Image, ImageTk
 
-# import customtkinter
+customtkinter.set_appearance_mode("Dark")  # Modes: "System" (standard), "Dark", "Light"
+customtkinter.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
+
+PATH = os.path.dirname(os.path.realpath(__file__))
 
 backend = default_backend()
 salt = b'2444'
@@ -53,19 +60,33 @@ username TEXT NOT NULL,
 password TEXT NOT NULL);
 """)
 
+# Constants
+APP_NAME = "PassCollector"
+WIDTH = 1200
+HEIGHT = 600
 
 # Create the Popup
 def popUp(text):
+    
     answer = simpledialog.askstring("input string", text)
 
     return answer
 
 
 # Initiate Window
-window = Tk()
+window = customtkinter.CTk()
+window.title(APP_NAME)
 window.update()
+window.geometry(f"{WIDTH}x{HEIGHT}")
+window.minsize(WIDTH, HEIGHT)
+window.maxsize(WIDTH * 3, HEIGHT * 3)
+window.resizable(True, True)
 
-window.title("PassCollector")
+image = Image.open(PATH + "/Images/bg_gradient.jpg").resize((WIDTH*3, HEIGHT*3))    
+bg_image = ImageTk.PhotoImage(image)
+
+image = Image.open(PATH + "/Images/title.png")
+title_image = ImageTk.PhotoImage(image)
 
 def hashPassword(input):
     hash1 = hashlib.sha256(input)
@@ -78,22 +99,41 @@ def firstScreen():
     for widget in window.winfo_children():
         widget.destroy()
 
-    window.geometry("250x125")
+    image_label = tkinter.Label(master=window, image=bg_image)
+    image_label.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
-    lbl = Label(window, text="Create Master Password")
-    lbl.config(anchor=CENTER)
-    lbl.pack()
+    frame = customtkinter.CTkFrame(master=window,
+                                   width=300,
+                                   height=HEIGHT,
+                                   corner_radius=10)
+    frame.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
-    txt = Entry(window, width=20, show="*")
-    txt.pack()
-    txt.focus()
+    image_label_title = tkinter.Label(master=frame, image=title_image, bg="#2a2d2e")
+    image_label_title.place(relx=0.5, rely=0.20, anchor=tkinter.CENTER)
 
-    lbl1 = Label(window, text="Re-enter Password")
-    lbl1.config(anchor=CENTER)
-    lbl1.pack()
 
-    txt1 = Entry(window, width=20, show="*")
-    txt1.pack()
+    lbl = customtkinter.CTkLabel(master=frame, width=200, height=60, 
+                                              fg_color=("gray70", "gray25"), text="Please Create A Master Password")
+    lbl.place(relx=0.5, rely=0.4, anchor=tkinter.CENTER)
+
+
+
+    txt = customtkinter.CTkEntry(master=frame, corner_radius=6, width=200, show="*", placeholder_text="Enter Password")
+    txt.place(relx=0.5, rely=0.52, anchor=tkinter.CENTER)
+
+    txt1 = customtkinter.CTkEntry(master=frame, corner_radius=6, width=200, show="*", placeholder_text="Re-Enter Password")
+    txt1.place(relx=0.5, rely=0.6, anchor=tkinter.CENTER)
+
+    # txt = Entry(window, width=20, show="*")
+    # txt.pack()
+    # txt.focus()
+
+    # lbl1 = Label(window, text="Re-enter Password")
+    # lbl1.config(anchor=CENTER)
+    # lbl1.pack()
+
+    # txt1 = Entry(window, width=20, show="*")
+    # txt1.pack()
 
     def savePassword():
         if txt.get() == txt1.get():
@@ -111,27 +151,39 @@ def firstScreen():
         else:
             lbl.config(text="Password Do Not Match")
 
-    btn = Button(window, text="Save", command=savePassword)
-    btn.pack(pady=5)
+    btn = customtkinter.CTkButton(master=frame, text="Create Master Password",
+                                                corner_radius=6, command=savePassword, width=200)
+    btn.place(relx=0.5, rely=0.7, anchor=tkinter.CENTER)
 
 
 def loginScreen():
     for widget in window.winfo_children():
         widget.destroy()
 
-    window.geometry("250x125")
+    image_label = tkinter.Label(master=window, image=bg_image)
+    image_label.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
-    lbl = Label(window, text="Enter Master Password")
-    lbl.config(anchor=CENTER)
-    lbl.pack()
+    frame = customtkinter.CTkFrame(master=window,
+                                   width=300,
+                                   height=HEIGHT,
+                                   corner_radius=10)
+    frame.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
 
-    txt = Entry(window, width=20, show="*")
-    txt.pack()
-    txt.focus()
+    image_label_title = tkinter.Label(master=frame, image=title_image, bg="#2a2d2e")
+    image_label_title.place(relx=0.5, rely=0.20, anchor=tkinter.CENTER)
 
+    lbl = customtkinter.CTkLabel(master=frame, width=200, height=60, 
+                                              fg_color=("gray70", "gray25"), text="Please Enter The Master Password")
+    lbl.place(relx=0.5, rely=0.4, anchor=tkinter.CENTER)
+
+    txt = customtkinter.CTkEntry(master=frame, corner_radius=6, width=200, show="*", placeholder_text="Enter Password")
+    txt.place(relx=0.5, rely=0.52, anchor=tkinter.CENTER)
+
+    # Please Fix this Section
     lbl1 = Label(window)
     lbl1.config(anchor=CENTER)
     lbl1.pack(side=TOP)
+    # Please Fix this Section
 
     def getMasterPassword():
         checkHashedPassword = hashPassword(txt.get().encode('utf-8'))
@@ -149,8 +201,9 @@ def loginScreen():
             txt.delete(0, 'end')
             lbl1.config(text="Wrong Password")
 
-    btn = Button(window, text="Submit", command=checkPassword)
-    btn.pack(pady=5)
+    btn = customtkinter.CTkButton(master=frame, text="Login",
+                                                corner_radius=6, command=checkPassword, width=200)
+    btn.place(relx=0.5, rely=0.6, anchor=tkinter.CENTER)
 
 def passwordVault():
     for widget in window.winfo_children():
@@ -181,17 +234,17 @@ def passwordVault():
 
     window.geometry("750x550")
     window.resizable(height=None, width=None)
-    lbl = Label(window, text="Password Vault")
+    lbl = customtkinter.CTkLabel(window, text="Password Vault")
     lbl.grid(column=1)
 
-    btn = Button(window, text="+", command=addEntry)
+    btn = customtkinter.CTkButton(window, text="+", command=addEntry)
     btn.grid(column=1, pady=10)
 
-    lbl = Label(window, text="Website")
+    lbl = customtkinter.CTkLabel(window, text="Website")
     lbl.grid(row=2, column=0, padx=80)
-    lbl = Label(window, text="Username")
+    lbl = customtkinter.CTkLabel(window, text="Username")
     lbl.grid(row=2, column=1, padx=80)
-    lbl = Label(window, text="Password")
+    lbl = customtkinter.CTkLabel(window, text="Password")
     lbl.grid(row=2, column=2, padx=80)
 
     cursor.execute("SELECT * FROM vault")
@@ -205,16 +258,16 @@ def passwordVault():
                 break
 
             # website label
-            lbl1 = Label(window, text=(decrypt(array[i][1], encryptionKey)), font=("Helvetica", 12))
+            lbl1 = customtkinter.CTkLabel(window, text=(decrypt(array[i][1], encryptionKey)))
             lbl1.grid(column=0, row=(i + 3))
             # username label
-            lbl2 = Label(window, text=(decrypt(array[i][2], encryptionKey)), font=("Helvetica", 12))
+            lbl2 = customtkinter.CTkLabel(window, text=(decrypt(array[i][2], encryptionKey)))
             lbl2.grid(column=1, row=(i + 3))
             # password label
-            lbl3 = Label(window, text=(decrypt(array[i][3], encryptionKey)), font=("Helvetica", 12))
+            lbl3 = customtkinter.CTkLabel(window, text=(decrypt(array[i][3], encryptionKey)))
             lbl3.grid(column=2, row=(i + 3))
 
-            btn = Button(window, text="Delete", command=partial(removeEntry, array[i][0]))
+            btn = customtkinter.CTkButton(window, text="Delete", command=partial(removeEntry, array[i][0]))
             btn.grid(column=3, row=(i + 3), pady=10)
 
             i = i + 1
@@ -230,3 +283,4 @@ if cursor.fetchall():
 else:
     firstScreen()
 window.mainloop()
+
