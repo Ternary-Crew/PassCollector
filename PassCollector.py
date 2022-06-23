@@ -180,9 +180,9 @@ def loginScreen():
     txt.place(relx=0.5, rely=0.52, anchor=tkinter.CENTER)
 
     # Please Fix this Section
-    lbl1 = Label(window)
-    lbl1.config(anchor=CENTER)
-    lbl1.pack(side=TOP)
+    # lbl1 = customtkinter.CTkLabel(window)
+    # lbl1.config(anchor=CENTER)
+    # lbl1.pack(side=TOP)
     # Please Fix this Section
 
     def getMasterPassword():
@@ -199,7 +199,7 @@ def loginScreen():
             passwordVault()
         else:
             txt.delete(0, 'end')
-            lbl1.config(text="Wrong Password")
+            lbl.config(text="Wrong Password")
 
     btn = customtkinter.CTkButton(master=frame, text="Login",
                                                 corner_radius=6, command=checkPassword, width=200)
