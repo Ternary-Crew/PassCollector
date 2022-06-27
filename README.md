@@ -118,9 +118,9 @@ Karl:
 * Clean up code
 
 ## Technical Notes
-* This program is for keeping user's password in a secured vault.
+* PassCollector is a password manager application that is based on the user's desktop. It allows users to store their password in a protected vault that stores data of their website, username, and password.
 
-## Developer NOtes
+## Developer Notes
 * 
 
 ## Links
