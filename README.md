@@ -74,7 +74,7 @@ Current:
 Next: *
 
 
-## Week 3 : 6/14/22 - 6/20/22
+## Week 4 : 6/14/22 - 6/20/22
 
 ### What was done since the last README submitted
 * Edited the GUI
@@ -96,6 +96,26 @@ Kevin:
 Karl:
 * Clean up code
 
+
+## Week 5 : 6/21/22 - 6/27/22
+
+### What was done since the last README submitted
+* Edited the GUI
+
+### What is pending now
+* Clean up code
+
+### Who did what so far and what will each person be doing next
+Christian
+
+Completed: 
+* Clean up code
+
+Kevin:
+* Clean up code
+
+Karl:
+* Clean up code
 
 ## Links
 * [Our Online Repository](https://github.com/Ternary-Crew/PassCollector)
