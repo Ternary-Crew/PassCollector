@@ -117,5 +117,14 @@ Kevin:
 Karl:
 * Clean up code
 
+## Technical Notes
+* This program is for keeping user's password in a secured vault.
+
+## Developer NOtes
+* 
+
 ## Links
 * [Our Online Repository](https://github.com/Ternary-Crew/PassCollector)
+* [Our Final Project Documentation](https://github.com/Ternary-Crew/PassCollector)
+* [Our Release Version](https://github.com/Ternary-Crew/PassCollector)
+* [Our Wiki Page](https://github.com/Ternary-Crew/PassCollector/wiki)
