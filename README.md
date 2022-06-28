@@ -121,7 +121,7 @@ Karl:
 * PassCollector is a password manager application that is based on the user's desktop. It allows users to store their password in a protected vault that stores data of their website, username, and password.
 
 ## Developer Notes
-* 
+* We initially tried implementing a password reset function to the application, but it was very buggy and would crash the program, so we had to remove it entirely.
 
 ## Links
 * [Our Online Repository](https://github.com/Ternary-Crew/PassCollector)
