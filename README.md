@@ -125,6 +125,6 @@ Karl:
 
 ## Links
 * [Our Online Repository](https://github.com/Ternary-Crew/PassCollector)
-* [Our Final Project Documentation](https://github.com/Ternary-Crew/PassCollector)
+* [Our Final Project Documentation](https://github.com/Ternary-Crew/PassCollector/blob/main/PassCollector%20Documentation.pdf)
 * [Our Release Version](https://github.com/Ternary-Crew/PassCollector/releases)
 * [Our Wiki Page](https://github.com/Ternary-Crew/PassCollector/wiki)
